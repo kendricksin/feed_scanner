@@ -3,7 +3,6 @@
 import asyncio
 import sys
 from pathlib import Path
-import pytest
 from datetime import datetime
 
 # Add project root to Python path
