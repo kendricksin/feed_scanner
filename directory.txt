@@ -1,0 +1,83 @@
+egp_pipeline/
+├── src/
+│   ├── core/                   # Core application modules
+│   │   ├── __init__.py
+│   │   ├── config.py          # Configuration management
+│   │   ├── logging.py         # Logging configuration
+│   │   └── constants.py       # Global constants
+│   │
+│   ├── db/                    # Database related code
+│   │   ├── __init__.py
+│   │   ├── models/           # SQLAlchemy models
+│   │   │   ├── __init__.py
+│   │   │   ├── announcement.py
+│   │   │   └── department.py
+│   │   ├── repositories/     # Database access layer
+│   │   │   ├── __init__.py
+│   │   │   ├── base.py
+│   │   │   └── announcement.py
+│   │   └── session.py        # Database session management
+│   │
+│   ├── pipeline/             # Pipeline components
+│   │   ├── __init__.py
+│   │   ├── orchestrator.py   # Pipeline orchestration
+│   │   ├── scheduler.py      # Job scheduling
+│   │   └── processors/       # Individual processors
+│   │       ├── __init__.py
+│   │       ├── feed.py       # RSS feed processor
+│   │       ├── pdf.py        # PDF processor
+│   │       └── base.py       # Base processor class
+│   │
+│   ├── schemas/              # Pydantic models
+│   │   ├── __init__.py
+│   │   ├── announcement.py
+│   │   └── department.py
+│   │
+│   ├── services/             # Business logic
+│   │   ├── __init__.py
+│   │   ├── feed_service.py
+│   │   └── pdf_service.py
+│   │
+│   ├── api/                  # FastAPI routes and endpoints
+│   │   ├── __init__.py
+│   │   ├── deps.py          # Dependencies
+│   │   ├── middleware.py    # API middleware
+│   │   └── routes/
+│   │       ├── __init__.py
+│   │       ├── announcements.py
+│   │       └── status.py
+│   │
+│   └── utils/               # Utility functions
+│       ├── __init__.py
+│       ├── dates.py
+│       └── text.py
+│
+├── scripts/                 # Utility scripts
+│   ├── __init__.py
+│   ├── db_init.py
+│   └── migration.py
+│
+├── tests/                  # Test suite
+│   ├── __init__.py
+│   ├── conftest.py
+│   ├── test_pipeline/
+│   ├── test_api/
+│   └── test_services/
+│
+├── docs/                   # Documentation
+│   ├── api/
+│   ├── pipeline/
+│   └── setup.md
+│
+├── data/                   # Data storage
+│   ├── logs/
+│   └── pdfs/
+│
+├── .env                    # Environment variables
+├── .env.example           # Example environment variables
+├── .gitignore
+├── docker-compose.yml     # Docker compose configuration
+├── Dockerfile            # Docker build file
+├── pyproject.toml        # Project metadata and dependencies
+├── README.md
+└── requirements.txt      # Python dependencies
