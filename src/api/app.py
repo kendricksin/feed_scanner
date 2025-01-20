@@ -1,8 +1,15 @@
+# src/api/app.py
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from .routes import announcements, status
+from src.pipeline.scheduler import scheduler
+from .routes import announcements, pipeline
 
-app = FastAPI(title="EGP Pipeline API")
+app = FastAPI(
+    title="EGP Pipeline API",
+    description="API for EGP announcement processing pipeline",
+    version="1.0.0"
+)
 
 # Add CORS middleware
 app.add_middleware(
@@ -14,5 +21,15 @@ app.add_middleware(
 )
 
 # Include routers
-app.include_router(announcements.router, prefix="/api/v1/announcements")
-app.include_router(status.router, prefix="/api/v1/status")
+app.include_router(announcements.router, prefix="/api/announcements", tags=["announcements"])
+app.include_router(pipeline.router, prefix="/api/pipeline", tags=["pipeline"])
+
+@app.on_event("startup")
+async def startup_event():
+    """Start scheduler on application startup"""
+    scheduler.start()
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    """Stop scheduler on application shutdown"""
+    scheduler.stop()

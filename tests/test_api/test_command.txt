@@ -1,0 +1,11 @@
+# Get announcements
+curl http://localhost:8000/api/announcements
+
+# Get statistics
+curl http://localhost:8000/api/announcements/statistics
+
+# Start pipeline run
+curl -X POST http://localhost:8000/api/pipeline/start -H "Content-Type: application/json" -d '{"dept_ids": ["0307"]}'
+
+# Get pipeline status
+curl http://localhost:8000/api/pipeline/status
