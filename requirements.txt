@@ -14,3 +14,6 @@ streamlit-pdf-viewer
 python-docx
 docx2txt
 Pillow
+aiofiles
+PyMuPDF
+PyPDF2

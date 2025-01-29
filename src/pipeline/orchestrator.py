@@ -11,18 +11,26 @@ from .processors.pdf import PDFProcessor
 
 logger = get_logger(__name__)
 
+# src/pipeline/orchestrator.py
+
 class PipelineOrchestrator:
     """Orchestrates the execution of pipeline processors"""
     
     def __init__(self):
-        self.processors: List[BaseProcessor] = [
-            FeedProcessor(),
-            PDFProcessor()
-        ]
         self.start_time: Optional[datetime] = None
         self.end_time: Optional[datetime] = None
         self._status = Status.PENDING
         self._results: Dict[str, Any] = {}
+        # Store processor count directly
+        self._processor_count = 2  # FeedProcessor and PDFProcessor
+    
+    @property
+    def processors(self) -> List[BaseProcessor]:
+        """Get list of processors"""
+        return [
+            FeedProcessor(),
+            PDFProcessor()
+        ]
     
     async def run(self, dept_ids: Optional[List[str]] = None) -> Dict[str, Any]:
         """Run the pipeline for specified departments"""
@@ -60,7 +68,7 @@ class PipelineOrchestrator:
         dept_results = {}
         
         try:
-            for processor in self.processors:
+            for processor in self.processors:  # Now gets fresh processor instances
                 logger.info(f"Running {processor.name} for department {dept_id}")
                 result = await processor.execute(dept_id)
                 dept_results[processor.name] = {
@@ -93,13 +101,13 @@ class PipelineOrchestrator:
             "end_time": self.end_time,
             "execution_time": self.execution_time,
             "departments": len(self._results),
-            "processors": len(self.processors),
+            "processors": self._processor_count,  # Use stored count instead of len(processors)
             "details": self._results
         }
         
         # Add processor-specific statistics
-        for processor in self.processors:
-            processor_name = processor.name
+        processor_names = ["FeedProcessor", "PDFProcessor"]  # Hardcode processor names
+        for processor_name in processor_names:
             stats = {
                 "successful": sum(
                     1 for dept_results in self._results.values()

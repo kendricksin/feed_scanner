@@ -27,13 +27,7 @@ def view_announcements(limit: int = 20):
         with get_db() as conn:
             # Create query with parameterized limit
             query = """
-            SELECT 
-                project_id,
-                dept_id,
-                title,
-                status,
-                created_at,
-                updated_at
+            SELECT *
             FROM announcements 
             ORDER BY created_at DESC
             LIMIT ?

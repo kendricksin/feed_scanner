@@ -15,7 +15,10 @@ logger = get_logger(__name__)
 
 class FeedProcessor(BaseProcessor):
     """Processor for EGP RSS feed"""
-    
+    def __init__(self):
+        super().__init__()
+        self.logger = get_logger(self.__class__.__name__)
+
     @property
     def name(self) -> str:
         return "FeedProcessor"
@@ -28,23 +31,45 @@ class FeedProcessor(BaseProcessor):
                 return {"processed": 0, "error": "Failed to fetch feed"}
             
             announcements = self._parse_feed(feed_content)
+            processed_results = []
             
-            # Process announcements within a single database connection
-            with get_db() as conn:
-                repository = AnnouncementRepository(conn)
-                processed = await self._process_announcements(
-                    announcements, 
-                    dept_id,
-                    repository
-                )
+            async with AnnouncementRepository() as repository:
+                for data in announcements:
+                    try:
+                        if not data.get("project_id"):
+                            continue
+                            
+                        announcement = Announcement(
+                            project_id=data["project_id"],
+                            title=data.get("title", ""),
+                            link=data.get("link", ""),
+                            description=data.get("description", ""),
+                            dept_id=dept_id
+                        )
+                        
+                        existing = await repository.get_by_project_id(announcement.project_id)
+                        saved = await repository.upsert(announcement)
+                        
+                        if saved:
+                            processed_results.append({
+                                "project_id": saved.project_id,
+                                "is_new": not existing
+                            })
+                            
+                    except Exception as e:
+                        self.logger.error(
+                            f"Error processing announcement {data.get('project_id')}: {e}"
+                        )
+                        continue
             
             return {
-                "processed": len(processed),
-                "new": len([a for a in processed if a.get("is_new", False)]),
-                "updated": len([a for a in processed if not a.get("is_new", False)])
+                "processed": len(processed_results),
+                "new": len([a for a in processed_results if a.get("is_new", False)]),
+                "updated": len([a for a in processed_results if not a.get("is_new", False)])
             }
+            
         except Exception as e:
-            logger.error(f"Error processing feed: {e}")
+            self.logger.error(f"Error processing feed: {e}")
             return {"processed": 0, "error": str(e)}
 
     async def _fetch_feed(self, dept_id: str) -> Optional[str]:
