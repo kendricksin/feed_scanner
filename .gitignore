@@ -1,6 +1,7 @@
 # Python
 __pycache__/
 downloads/
+__init__.py
 
 # Environment
 .env
@@ -14,3 +15,4 @@ data/pdfs/*
 data/logs/*
 !data/pdfs/.gitkeep
 !data/logs/.gitkeep
+data/egp.db
