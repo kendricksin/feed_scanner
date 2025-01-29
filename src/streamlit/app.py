@@ -27,11 +27,10 @@ logger = get_logger(__name__)
 def load_latest_announcements(
     limit: int = 50, 
     dept_filter: str = None, 
-    status_filter: str = None, 
     budget_min: float = None, 
     budget_max: float = None, 
-    submission_date_start: datetime = None, 
-    submission_date_end: datetime = None
+    # submission_date_start: datetime = None, 
+    # submission_date_end: datetime = None
 ):
     """Load latest announcements from database with advanced filtering"""
     with get_db() as conn:
@@ -41,9 +40,6 @@ def load_latest_announcements(
             a.project_id,
             a.dept_id,
             a.title,
-            a.status,
-            a.created_at,
-            a.updated_at,
             a.submission_date,
             a.budget_amount
         FROM announcements a
@@ -59,11 +55,6 @@ def load_latest_announcements(
             conditions.append("a.dept_id = ?")
             params.append(dept_filter)
         
-        # Status filter
-        if status_filter:
-            conditions.append("a.status = ?")
-            params.append(status_filter)
-        
         # Budget range filter
         if budget_min is not None:
             conditions.append("a.budget_amount >= ?")
@@ -73,29 +64,21 @@ def load_latest_announcements(
             conditions.append("a.budget_amount <= ?")
             params.append(budget_max)
         
-        # Submission date range filter
-        if submission_date_start:
-            conditions.append("a.submission_date >= ?")
-            params.append(submission_date_start)
+        # # Submission date range filter
+        # if submission_date_start:
+        #     conditions.append("a.submission_date >= ?")
+        #     params.append(submission_date_start)
         
-        if submission_date_end:
-            conditions.append("a.submission_date <= ?")
-            params.append(submission_date_end)
+        # if submission_date_end:
+        #     conditions.append("a.submission_date <= ?")
+        #     params.append(submission_date_end)
         
         # Combine conditions
         if conditions:
             query += " AND " + " AND ".join(conditions)
         
-        # Add ordering and limit
-        query += " ORDER BY a.created_at DESC LIMIT ?"
-        params.append(limit)
-        
         # Execute query
         df = pd.read_sql_query(query, conn, params=params)
-        
-        # Format datetime columns
-        for col in ['created_at', 'updated_at', 'submission_date']:
-            df[col] = pd.to_datetime(df[col])
         
         return df
 
@@ -165,14 +148,6 @@ def show_announcement_tab():
         index=0
     )
     
-    # Status filter
-    status_options = ['All', 'pending', 'processing', 'completed', 'failed']
-    status_filter = st.sidebar.selectbox(
-        "Filter by Status", 
-        options=status_options,
-        index=0
-    )
-    
     # Budget range filter
     with get_db() as conn:
         budget_stats = pd.read_sql_query(
@@ -200,41 +175,39 @@ def show_announcement_tab():
         )
     
     # Submission date range filter
-    with get_db() as conn:
-        date_range = pd.read_sql_query(
-            "SELECT MIN(submission_date) as min_date, MAX(submission_date) as max_date FROM announcements", 
-            conn
-        )
+    # with get_db() as conn:
+    #     date_range = pd.read_sql_query(
+    #         "SELECT MIN(submission_date) as min_date, MAX(submission_date) as max_date FROM announcements", 
+    #         conn
+    #     )
     
-    min_date = pd.to_datetime(date_range['min_date'].iloc[0]) or datetime.now()
-    max_date = pd.to_datetime(date_range['max_date'].iloc[0]) or datetime.now()
+    # min_date = pd.to_datetime(date_range['min_date'].iloc[0]) or datetime.now()
+    # max_date = pd.to_datetime(date_range['max_date'].iloc[0]) or datetime.now()
     
-    submission_date_start = st.sidebar.date_input(
-        "Submission Date Start", 
-        value=min_date.date(),
-        min_value=min_date.date(),
-        max_value=max_date.date()
-    )
-    submission_date_end = st.sidebar.date_input(
-        "Submission Date End", 
-        value=max_date.date(),
-        min_value=min_date.date(),
-        max_value=max_date.date()
-    )
+    # submission_date_start = st.sidebar.date_input(
+    #     "Submission Date Start", 
+    #     value=min_date.date(),
+    #     min_value=min_date.date(),
+    #     max_value=max_date.date()
+    # )
+    # submission_date_end = st.sidebar.date_input(
+    #     "Submission Date End", 
+    #     value=max_date.date(),
+    #     min_value=min_date.date(),
+    #     max_value=max_date.date()
+    # )
     
     # Prepare filters
     dept_param = dept_filter if dept_filter != 'All' else None
-    status_param = status_filter if status_filter != 'All' else None
     
     # Load data with filters
     df = load_latest_announcements(
         limit=50,
         dept_filter=dept_param,
-        status_filter=status_param,
         budget_min=budget_min,
         budget_max=budget_max,
-        submission_date_start=submission_date_start,
-        submission_date_end=submission_date_end
+        # submission_date_start=submission_date_start,
+        # submission_date_end=submission_date_end
     )
     
     # Show last refresh time
@@ -244,14 +217,6 @@ def show_announcement_tab():
     st.sidebar.subheader("Summary Statistics")
     st.sidebar.write(f"Total rows: {len(df)}")
     st.sidebar.write(f"Unique departments: {df['dept_id'].nunique()}")
-    st.sidebar.write("Status counts:")
-    st.sidebar.dataframe(df['status'].value_counts())
-    
-    # Show date range
-    if not df.empty:
-        newest = df['created_at'].max().strftime('%Y-%m-%d %H:%M:%S')
-        oldest = df['created_at'].min().strftime('%Y-%m-%d %H:%M:%S')
-        st.sidebar.write(f"Date range: {oldest} to {newest}")
     
     # Main data display
     st.dataframe(
@@ -261,9 +226,9 @@ def show_announcement_tab():
             "project_id": "Project ID",
             "dept_id": "Department",
             "title": "Title",
-            "status": "Status",
-            "created_at": "Created",
-            "updated_at": "Updated",
+            # "status": "Status",
+            # "created_at": "Created",
+            # "updated_at": "Updated",
             "submission_date": "Submission Date",
             "budget_amount": "Budget Amount (THB)"
         }

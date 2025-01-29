@@ -162,13 +162,18 @@ class PDFProcessor(BaseProcessor):
             return None
     
     def _extract_budget(self, text: str) -> Optional[float]:
-        """Extract budget amount"""
-        pattern = r'(\d{1,3}(?:,\d{3})*(?:\.\d{2})?)\s*บาท'
-        match = re.search(pattern, text)
-        if match:
-            amount_str = match.group(1).replace(',', '')
-            return float(amount_str)
-        return None
+            """Extract budget amount"""
+            pattern = r'(\d{1,3}(?:,\d{3})*(?:\.\d{2})?)\s*บาท'
+            match = re.search(pattern, text)
+            if match:
+                try:
+                    # Remove commas and convert to float
+                    amount_str = match.group(1).replace(',', '')
+                    return float(amount_str)
+                except (ValueError, TypeError):
+                    self.logger.error(f"Failed to convert budget amount: {match.group(1)}")
+                    return None
+            return None
     
     def _extract_quantity(self, text: str) -> Optional[int]:
         """Extract quantity"""

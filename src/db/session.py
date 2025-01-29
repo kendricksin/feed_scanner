@@ -17,9 +17,12 @@ def init_db():
             conn.row_factory = sqlite3.Row
             cursor = conn.cursor()
             
-            # Create announcements table
+            # Drop existing table if needed
+            cursor.execute("DROP TABLE IF EXISTS announcements")
+            
+            # Create announcements table with proper types
             cursor.execute("""
-                CREATE TABLE IF NOT EXISTS announcements (
+                CREATE TABLE announcements (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     project_id TEXT UNIQUE NOT NULL,
                     dept_id TEXT,
@@ -28,7 +31,7 @@ def init_db():
                     description TEXT,
                     status TEXT DEFAULT 'pending',
                     pdf_path TEXT,
-                    budget_amount REAL,
+                    budget_amount REAL,  -- Using REAL for floating point numbers
                     quantity INTEGER,
                     duration_years INTEGER,
                     duration_months INTEGER,
