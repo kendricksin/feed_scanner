@@ -12,12 +12,8 @@ class Announcement:
     description: str
     dept_id: Optional[str] = None
     status: Status = Status.PENDING
-    doc_info: Optional[str] = None
-    zip_id: Optional[str] = None
-    doc_path: Optional[str] = None
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
-    doc_updated_at: Optional[datetime] = None
     id: Optional[int] = None
 
     def __post_init__(self):
@@ -52,10 +48,6 @@ class Announcement:
             'description': self.description,
             'dept_id': self.dept_id,
             'status': self.status,
-            'doc_info': self.doc_info,
-            'zip_id': self.zip_id,
-            'doc_path': self.doc_path,
             'created_at': self.created_at,
-            'updated_at': self.updated_at,
-            'doc_updated_at': self.doc_updated_at
+            'updated_at': self.updated_at
         }
