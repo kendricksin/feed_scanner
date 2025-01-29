@@ -1,56 +1,61 @@
-from dataclasses import dataclass
 from datetime import datetime
 from typing import Optional
-from .base import BaseModel
+from dataclasses import dataclass
+from src.core.constants import Status
 
 @dataclass
-class Announcement(BaseModel):
-    id: Optional[int] = None
-    project_id: str = None
-    title: str = None
-    link: str = None
-    description: str = None
-    dept_id: str = None
-    status: str = "pending"
-    
-    # Procurement details
-    budget_amount: Optional[float] = None
-    quantity: Optional[int] = None
-    duration_years: Optional[int] = None
-    duration_months: Optional[int] = None
-    submission_date: Optional[datetime] = None
-    submission_time: Optional[str] = None
-    contact_phone: Optional[str] = None
-    contact_email: Optional[str] = None
-    
-    # File details
-    pdf_path: Optional[str] = None
-    
-    # Metadata
+class Announcement:
+    """Announcement model"""
+    project_id: str
+    title: str
+    link: str
+    description: str
+    dept_id: Optional[str] = None
+    status: Status = Status.PENDING
+    doc_info: Optional[str] = None
+    zip_id: Optional[str] = None
+    doc_path: Optional[str] = None
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
-    
+    doc_updated_at: Optional[datetime] = None
+    id: Optional[int] = None
+
     def __post_init__(self):
-        """Set default dates if not provided"""
+        """Set default values after initialization"""
         if self.created_at is None:
             self.created_at = datetime.now()
         if self.updated_at is None:
             self.updated_at = datetime.now()
+        
+    def update(self, **kwargs):
+        """Update announcement attributes"""
+        for key, value in kwargs.items():
+            if hasattr(self, key):
+                setattr(self, key, value)
+        self.updated_at = datetime.now()
 
-    def __init__(self, row=None):
-        if row:
-            # Convert SQLite row to object attributes
-            for key in row.keys():
-                setattr(self, key, row[key])
-        else:
-            self.project_id = None
-            self.title = None
-            self.link = None
-            self.description = None
-            self.status = None
-            self.created_at = None
-            self.updated_at = None
-            self.doc_info = None
-            self.zip_id = None
-            self.doc_path = None
-            self.doc_updated_at = None
+    @classmethod
+    def from_dict(cls, data: dict) -> 'Announcement':
+        """Create announcement from dictionary"""
+        return cls(**{
+            k: v for k, v in data.items() 
+            if k in cls.__annotations__
+        })
+
+    def to_dict(self) -> dict:
+        """Convert announcement to dictionary"""
+        return {
+            'id': self.id,
+            'project_id': self.project_id,
+            'title': self.title,
+            'link': self.link,
+            'description': self.description,
+            'dept_id': self.dept_id,
+            'status': self.status,
+            'doc_info': self.doc_info,
+            'zip_id': self.zip_id,
+            'doc_path': self.doc_path,
+            'created_at': self.created_at,
+            'updated_at': self.updated_at,
+            'doc_updated_at': self.doc_updated_at
+        }
