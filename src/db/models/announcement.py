@@ -36,3 +36,21 @@ class Announcement(BaseModel):
             self.created_at = datetime.now()
         if self.updated_at is None:
             self.updated_at = datetime.now()
+
+    def __init__(self, row=None):
+        if row:
+            # Convert SQLite row to object attributes
+            for key in row.keys():
+                setattr(self, key, row[key])
+        else:
+            self.project_id = None
+            self.title = None
+            self.link = None
+            self.description = None
+            self.status = None
+            self.created_at = None
+            self.updated_at = None
+            self.doc_info = None
+            self.zip_id = None
+            self.doc_path = None
+            self.doc_updated_at = None

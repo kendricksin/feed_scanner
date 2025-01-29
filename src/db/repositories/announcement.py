@@ -16,6 +16,11 @@ class AnnouncementRepository(BaseRepository[Announcement]):
         self.table_name = "announcements"
         self.conn = conn
         
+    def __del__(self):
+        """Cleanup database connection"""
+        if hasattr(self, 'db'):
+            self.db.__exit__(None, None, None)
+
     def get_by_project_id(self, project_id: str) -> Optional[Announcement]:
         """Get announcement by project ID"""
         cursor = self.conn.cursor()
@@ -25,7 +30,18 @@ class AnnouncementRepository(BaseRepository[Announcement]):
         )
         row = cursor.fetchone()
         return Announcement.from_dict(dict(row)) if row else None
-    
+
+    def get_pending_processing(self):
+        """Get announcements that need document processing"""
+        cursor = self.conn.cursor()
+        cursor.execute("""
+            SELECT * FROM announcements 
+            WHERE (doc_path IS NULL OR doc_path = '')
+            AND status = 'pending'
+            ORDER BY created_at DESC
+        """)
+        return cursor.fetchall()
+
     def upsert(self, announcement: Announcement) -> Optional[Announcement]:
         """Insert or update announcement"""
         cursor = self.conn.cursor()
@@ -80,3 +96,25 @@ class AnnouncementRepository(BaseRepository[Announcement]):
             logger.error(f"Error in upsert: {e}")
             self.conn.rollback()
             raise
+
+    def update(self, announcement):
+        """Update announcement record"""
+        cursor = self.conn.cursor()
+        cursor.execute("""
+            UPDATE announcements 
+            SET 
+                doc_info = ?,
+                zip_id = ?,
+                doc_path = ?,
+                doc_updated_at = ?,
+                updated_at = ?
+            WHERE project_id = ?
+        """, (
+            announcement.doc_info,
+            announcement.zip_id,
+            announcement.doc_path,
+            announcement.doc_updated_at,
+            datetime.now(),
+            announcement.project_id
+        ))
+        self.conn.commit()

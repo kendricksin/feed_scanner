@@ -11,8 +11,4 @@ venv/
 .vscode/
 
 # Project specific
-data/pdfs/*
-data/logs/*
-!data/pdfs/.gitkeep
-!data/logs/.gitkeep
-data/egp.db
+data/

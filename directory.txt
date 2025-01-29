@@ -1,13 +1,14 @@
 egp_pipeline/
 ├── src/
+│   ├── streamlit/                   # Core application modules
+│   │   └── streamlit.py       # Global constants
+│   │
 │   ├── core/                   # Core application modules
-│   │   ├── __init__.py
 │   │   ├── config.py          # Configuration management
 │   │   ├── logging.py         # Logging configuration
 │   │   └── constants.py       # Global constants
 │   │
 │   ├── db/                    # Database related code
-│   │   ├── __init__.py
 │   │   ├── models/           # SQLAlchemy models
 │   │   │   ├── __init__.py
 │   │   │   ├── announcement.py
@@ -19,46 +20,37 @@ egp_pipeline/
 │   │   └── session.py        # Database session management
 │   │
 │   ├── pipeline/             # Pipeline components
-│   │   ├── __init__.py
 │   │   ├── orchestrator.py   # Pipeline orchestration
 │   │   ├── scheduler.py      # Job scheduling
 │   │   └── processors/       # Individual processors
-│   │       ├── __init__.py
 │   │       ├── feed.py       # RSS feed processor
 │   │       ├── pdf.py        # PDF processor
 │   │       └── base.py       # Base processor class
 │   │
 │   ├── schemas/              # Pydantic models
-│   │   ├── __init__.py
 │   │   ├── announcement.py
 │   │   └── department.py
 │   │
 │   ├── services/             # Business logic
-│   │   ├── __init__.py
 │   │   ├── feed_service.py
 │   │   └── pdf_service.py
 │   │
 │   ├── api/                  # FastAPI routes and endpoints
-│   │   ├── __init__.py
 │   │   ├── deps.py          # Dependencies
 │   │   ├── middleware.py    # API middleware
 │   │   └── routes/
-│   │       ├── __init__.py
 │   │       ├── announcements.py
 │   │       └── status.py
 │   │
 │   └── utils/               # Utility functions
-│       ├── __init__.py
 │       ├── dates.py
 │       └── text.py
 │
 ├── scripts/                 # Utility scripts
-│   ├── __init__.py
 │   ├── db_init.py
 │   └── migration.py
 │
 ├── tests/                  # Test suite
-│   ├── __init__.py
 │   ├── conftest.py
 │   ├── test_pipeline/
 │   ├── test_api/
