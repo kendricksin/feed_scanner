@@ -180,13 +180,41 @@ async def show_document_tab():
             files = [f for f in files if f.is_file()]
             
             if files:
-                # Create file selection
-                file_names = [f.relative_to(project_dir) for f in files]
-                selected_file = st.selectbox(
-                    "Select document to preview",
-                    options=file_names,
-                    format_func=str
-                )
+                # Create file buttons layout
+                st.write("Available Documents:")
+                
+                # Create columns for button grid
+                cols = st.columns(3)  # Show 3 buttons per row
+                
+                # Sort files by modification time
+                files.sort(key=lambda x: x.stat().st_mtime, reverse=True)
+                
+                # Create buttons for each file
+                selected_file = None
+                for idx, file in enumerate(files):
+                    col_idx = idx % 3
+                    with cols[col_idx]:
+                        file_name = file.relative_to(project_dir)
+                        
+                        # Get file icon based on type
+                        file_type = file.suffix.lower()
+                        if file_type == '.pdf':
+                            icon = "📄"
+                        elif file_type in ['.jpg', '.jpeg', '.png', '.gif']:
+                            icon = "🖼️"
+                        elif file_type in ['.xlsx', '.xls']:
+                            icon = "📊"
+                        elif file_type == '.docx':
+                            icon = "📝"
+                        else:
+                            icon = "📎"
+                        
+                        # Create button with icon and file info
+                        if st.button(
+                            f"{icon} {file_name}\n{file.stat().st_size / 1024:.1f} KB",
+                            key=f"file_{idx}"
+                        ):
+                            selected_file = file_name
                 
                 if selected_file:
                     selected_path = project_dir / selected_file
