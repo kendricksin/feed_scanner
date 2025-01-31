@@ -20,6 +20,7 @@ sys.path.append(str(project_root))
 from src.core.config import config
 from src.db.session import get_db
 from src.pipeline.processors.document import DocumentProcessor
+from src.pipeline.orchestrator import PipelineOrchestrator
 from src.core.logging import get_logger
 
 logger = get_logger(__name__)
@@ -120,6 +121,19 @@ def create_test_announcement(project_id: str):
         conn.commit()
         return True
 
+async def run_test_orchestrator():
+    """Run the test orchestrator"""
+    orchestrator = PipelineOrchestrator()
+    test_departments = [
+        "0703", "0708", "0806", "0807", "1507", "1509", 
+        "2502", "S315", "S505", "S506", "S601"
+    ]
+    return await orchestrator.run(test_departments)
+
+def run_orchestrator_and_update():
+    """Run orchestrator and return results"""
+    return asyncio.run(run_test_orchestrator())
+
 def get_binary_file_downloader_html(bin_file, file_label='File'):
     """Generate download link for file"""
     with open(bin_file, 'rb') as f:
@@ -131,6 +145,45 @@ def get_binary_file_downloader_html(bin_file, file_label='File'):
 def show_announcement_tab():
     """Show announcements list tab with advanced filtering"""
     st.subheader("Procurement Announcements")
+    
+    # Add pipeline controls to sidebar
+    st.sidebar.header("Pipeline Controls")
+    
+    # Add run pipeline button
+    if st.sidebar.button("🚀 Run Pipeline"):
+        with st.sidebar.status("Running pipeline...", expanded=True) as status:
+            try:
+                results = run_orchestrator_and_update()
+                
+                # Display results
+                st.sidebar.success("Pipeline completed successfully!")
+                
+                # Show summary statistics
+                st.sidebar.markdown("### Pipeline Results")
+                for dept_id, dept_results in results.get('details', {}).items():
+                    st.sidebar.markdown(f"**Department {dept_id}:**")
+                    
+                    # FeedProcessor results
+                    feed_results = dept_results.get('FeedProcessor', {}).get('result', {})
+                    if feed_results:
+                        st.sidebar.markdown(f"- Announcements processed: {feed_results.get('processed', 0)}")
+                        st.sidebar.markdown(f"- New entries: {feed_results.get('new', 0)}")
+                    
+                    # PDFProcessor results
+                    pdf_results = dept_results.get('PDFProcessor', {}).get('result', {})
+                    if pdf_results:
+                        st.sidebar.markdown(f"- PDFs processed: {pdf_results.get('processed', 0)}")
+                
+                # Automatically refresh the page after pipeline completes
+                status.update(label="Refreshing page...", state="complete", expanded=False)
+                st.rerun()
+                
+            except Exception as e:
+                st.sidebar.error(f"Error running pipeline: {str(e)}")
+    
+    # Add refresh button
+    if st.sidebar.button("🔄 Refresh Data"):
+        st.rerun()
     
     # Sidebar filters
     st.sidebar.header("Filters")
