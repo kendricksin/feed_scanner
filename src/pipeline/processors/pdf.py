@@ -92,10 +92,8 @@ class PDFProcessor(BaseProcessor):
     
     async def _download_pdf(self, url: str, project_id: str) -> Optional[Path]:
         """Download PDF file"""
-        pdf_dir = config.pdf_dir / project_id
-        pdf_dir.mkdir(parents=True, exist_ok=True)
-        
-        pdf_path = pdf_dir / f"{project_id}.pdf"
+        # Just save directly to pdfs directory
+        pdf_path = config.pdf_dir / f"{project_id}.pdf"
         
         # Skip if already downloaded
         if pdf_path.exists():
@@ -112,9 +110,7 @@ class PDFProcessor(BaseProcessor):
             ssl_context.check_hostname = False
             ssl_context.verify_mode = ssl.CERT_NONE
             
-            # Use the SSL context in the connector
             connector = aiohttp.TCPConnector(ssl=ssl_context)
-            
             async with aiohttp.ClientSession(connector=connector) as session:
                 async with session.get(
                     url,
@@ -123,7 +119,7 @@ class PDFProcessor(BaseProcessor):
                 ) as response:
                     if response.status == 200:
                         content = await response.read()
-                        if content:  # Check if content is not empty
+                        if content:
                             async with aiofiles.open(pdf_path, 'wb') as f:
                                 await f.write(content)
                             return pdf_path

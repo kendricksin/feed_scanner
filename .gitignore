@@ -12,3 +12,5 @@ venv/
 
 # Project specific
 data/
+
+.env

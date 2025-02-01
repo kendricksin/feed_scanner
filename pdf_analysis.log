@@ -1,0 +1,323 @@
+2025-02-01 11:54:45,305 - INFO - Processing data\pdfs\68019133974.pdf
+2025-02-01 11:54:53,855 - INFO - HTTP Request: POST https://dashscope-intl.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-01 11:54:53,859 - INFO - Analysis result for data\pdfs\68019133974.pdf:
+2025-02-01 11:57:49,100 - INFO - Processing data\pdfs\68019120087.pdf
+2025-02-01 11:57:55,055 - INFO - HTTP Request: POST https://dashscope-intl.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-01 11:57:55,058 - INFO - Analysis result for data\pdfs\68019120087.pdf:
+2025-02-01 12:01:27,670 - INFO - Processing data\pdfs\68019477830.pdf
+2025-02-01 12:01:33,012 - INFO - Analysis result for data\pdfs\68019477830.pdf:
+2025-02-01 12:01:33,013 - INFO - {
+  "document_title": "ประกาศกรมพัฒนาที่ดิน",
+  "department_name": "กรมพัฒนาที่ดิน",
+  "budget_amount": 220000.0,
+  "announcement_date": "2023-01-29",
+  "submission_date": "2023-02-06",
+  "contact": {
+    "phone": "0-3762-9518",
+    "email": "pri01@ldd.go.th"
+  }
+}
+2025-02-01 12:03:18,777 - INFO - Processing data\pdfs\68019549683.pdf
+2025-02-01 12:03:27,099 - INFO - Analysis result for data\pdfs\68019549683.pdf:
+2025-02-01 12:03:27,099 - INFO - {
+  "document_title": "ประกาศกรมชลประทาน",
+  "เรื่อง": "ประกวดราคาซื้อหินใหญ่ขนาด ๐.๒๐-๐.๔๐ ม. ตามรายละเอียด Specifications ของกรมชลประทานที่แนบ และอื่นๆ รวม ๔ รายการ ด้วยวิธีประกวดราคาอิเล็กทรอนิกส์ (e-bidding)",
+  "department_name": "กรมชลประทาน โดยโครงการชลประทานเลย",
+  "budget_amount": 854710.0,
+  "announcement_date": "2023-01-29",
+  "submission_date": "2023-02-06",
+  "contact": {
+    "phone": "0-4281-1111",
+    "email": "Supplyrid5loei@rid.go.th"
+  }
+}
+2025-02-01 12:04:15,791 - INFO - Processing data\pdfs\68019549683.pdf
+2025-02-01 12:04:21,971 - INFO - Analysis result for data\pdfs\68019549683.pdf:
+2025-02-01 12:04:21,972 - INFO - {
+  "document_title": "ประกาศกรมชลประทาน",
+  "เรื่อง": "ประกวดราคาซื้อหินใหญ่ขนาด ๐.๒๐-๐.๔๐ ม.",
+  "department_name": "กรมชลประทาน โดยโครงการชลประทานเลย",
+  "budget_amount": 854710.0,
+  "announcement_date": "2024-01-29",
+  "submission_date": "2024-02-06",
+  "contact": {
+    "phone": "๐-๔๒๘๑-๑๑๑๑",
+    "email": "Supplyrid5loei@rid.go.th"
+  }
+}
+2025-02-01 12:05:32,858 - INFO - Processing data\pdfs\68019549683.pdf
+2025-02-01 12:05:40,628 - INFO - Analysis result for data\pdfs\68019549683.pdf:
+2025-02-01 12:05:40,629 - INFO - {
+  "document_title": "ประกาศกรมชลประทาน",
+  "เรื่อง": "ประกวดราคาซื้อหินใหญ่ขนาด ๐.๒๐-๐.๔๐ ม. ตามรายละเอียด Specifications ของกรมชลประทานที่แนบ และอื่นๆ รวม ๔ รายการ ด้วยวิธีประกวดราคาอิเล็กทรอนิกส์ (e-bidding)",
+  "department_name": "กรมชลประทาน โดยโครงการชลประทานเลย",
+  "budget_amount": 854710.0,
+  "announcement_date": "2024-01-29",
+  "submission_date": "2024-02-06",
+  "contact": {
+    "phone": 0.42811111,
+    "email": "Supplyrid5loei@rid.go.th"
+  }
+}
+2025-02-01 12:06:10,978 - INFO - Processing data\pdfs\68019549683.pdf
+2025-02-01 12:06:19,913 - INFO - Analysis result for data\pdfs\68019549683.pdf:
+2025-02-01 12:06:19,914 - INFO - {
+  "document_title": "ประกาศกรมชลประทาน",
+  "เรื่อง": "ประกวดราคาซื้อหินใหญ่ขนาด ๐.๒๐-๐.๔๐ ม. ตามรายละเอียด Specifications ของกรมชลประทานที่แนบ และอื่นๆ รวม ๔ รายการ ด้วยวิธีประกวดราคาอิเล็กทรอนิกส์ (e-bidding)",
+  "department_name": "กรมชลประทาน โดยโครงการชลประทานเลย",
+  "budget_amount": 854710.0,
+  "announcement_date": "2023-01-29",
+  "submission_date": "2023-02-06",
+  "contact": {
+    "phone": "042811111",
+    "email": "Supplyrid5loei@rid.go.th"
+  }
+}
+2025-02-01 12:06:43,505 - INFO - Processing data\pdfs\68019549683.pdf
+2025-02-01 12:06:46,474 - INFO - Analysis result for data\pdfs\68019549683.pdf:
+2025-02-01 12:06:46,475 - INFO - {
+  "document_title": "ประกาศกรมชลประทาน",
+  "เรื่อง": "ประกวดราคาซื้อหินใหญ่ขนาด ๐.๒๐-๐.๔๐ ม. ตามรายละเอียด Specifications ของกรมชลประทานที่แนบ และอื่นๆ รวม ๔ รายการ ด้วยวิธีประกวดราคาอิเล็กทรอนิกส์ (e-bidding)",
+  "department_name": "กรมชลประทาน",
+  "budget_amount": 854710.0,
+  "announcement_date": "2023-01-29",
+  "submission_date": "2023-02-06",
+  "contact": {
+    "phone": "042811111",
+    "email": "Supplyrid5loei@rid.go.th"
+  }
+}
+2025-02-01 12:07:34,812 - INFO - Processing data\pdfs\67129380574.pdf
+2025-02-01 12:07:39,203 - INFO - Analysis result for data\pdfs\67129380574.pdf:
+2025-02-01 12:07:39,203 - INFO - {
+  "document_title": "สำเนา",
+  "เรื่อง": "ประกวดราคาจ้างก่อสร้างโครงการก่อสร้างเขื่อนป้องกันตลิ่งริมแม่น้ำชี บ้านหนองหวาย - บ้านหนองคล้า ตำบลลำชี อำเภอฆ้องชัย จังหวัดกาฬสินธุ์ ความยาว ๓๐๐ เมตร (ส่วนที่เหลือและซ่อมแซมส่วนที่ชำรุดบกพร่อง) ด้วยวิธีประกวดราคาอิเล็กทรอนิกส์ (e-bidding)",
+  "department_name": "กรมโยธาธิการและผังเมือง",
+  "budget_amount": 10624870.89,
+  "announcement_date": "2568-01-29",
+  "submission_date": "2568-02-18",
+  "contact": {
+    "phone": "022994693",
+    "email": "tpd_b@dpt.mail.go.th"
+  }
+}
+2025-02-01 12:08:21,713 - INFO - Processing data\pdfs\67129380574.pdf
+2025-02-01 12:08:30,363 - INFO - Analysis result for data\pdfs\67129380574.pdf:
+2025-02-01 12:08:30,364 - INFO - {
+  "document_title": "ประกาศกรมโยธาธิการและผังเมือง",
+  "เรื่อง": "ประกวดราคาจ้างก่อสร้างโครงการก่อสร้างเขื่อนป้องกันตลิ่งริมแม่น้ำชี บ้านหนองหวาย - บ้านหนองคล้า ตำบลลำชี อำเภอฆ้องชัย จังหวัดกาฬสินธุ์ ความยาว ๓๐๐ เมตร (ส่วนที่เหลือและซ่อมแซมส่วนที่ชำรุดบกพร่อง) ด้วยวิธีประกวดราคาอิเล็กทรอนิกส์ (e-bidding)",
+  "department_name": "กรมโยธาธิการและผังเมือง",
+  "budget_amount": 10624870.89,
+  "announcement_date": "2025-01-29",
+  "submission_date": "2025-02-18",
+  "contact": {
+    "phone": "022994693",
+    "email": "tpd_b@dpt.mail.go.th"
+  }
+}
+2025-02-01 12:09:29,693 - INFO - Processing data\pdfs\67129380574.pdf
+2025-02-01 12:09:33,368 - INFO - Analysis result for data\pdfs\67129380574.pdf:
+2025-02-01 12:09:33,369 - INFO - {
+  "document_title": "สำเนา",
+  "เรื่อง": "ประกวดราคาจ้างก่อสร้างโครงการก่อสร้างเขื่อนป้องกันตลิ่งริมแม่น้ำชี บ้านหนองหวาย - บ้านหนองคล้า ตำบลลำชี อำเภอฆ้องชัย จังหวัดกาฬสินธุ์ ความยาว ๓๐๐ เมตร (ส่วนที่เหลือและซ่อมแซมส่วนที่ชำรุดบกพร่อง) ด้วยวิธีประกวดราคาอิเล็กทรอนิกส์ (e-bidding)",
+  "department_name": "กรมโยธาธิการและผังเมือง",
+  "budget_amount": 10624870.89,
+  "announcement_date": "2568-01-29",
+  "submission_date": "2568-02-18",
+  "contact": {
+    "phone": "022994693",
+    "email": "tpd_b@dpt.mail.go.th"
+  }
+}
+2025-02-01 12:10:26,034 - INFO - Processing data\pdfs\67129486846.pdf
+2025-02-01 12:10:29,372 - INFO - Analysis result for data\pdfs\67129486846.pdf:
+2025-02-01 12:10:29,373 - INFO - {
+  "document_title": "ประกาศกรมสรรพากร",
+  "เรื่อง": "ประกวดราคาจ้างก่อสร้างโครงการจ้างปรับปรุงซ่อมแซมพื้นชั้นดาดฟ้า อาคารศูนย์เอกสารและหลักฐาน (ตลิ่งชัน) ด้วยวิธีประกวดราคาอิเล็กทรอนิกส์ (e-bidding)",
+  "department_name": "กรมสรรพากร",
+  "budget_amount": 867000.0,
+  "announcement_date": "2568-01-24",
+  "submission_date": null,
+  "contact": {
+    "phone": "022729786",
+    "email": null
+  }
+}
+2025-02-01 12:11:00,216 - INFO - Processing data\pdfs\67129334715.pdf
+2025-02-01 12:11:04,627 - INFO - Analysis result for data\pdfs\67129334715.pdf:
+2025-02-01 12:11:04,628 - INFO - {
+  "document_title": "สำเนา",
+  "เรื่อง": "ประกวดราคาซื้อจัดซื้อครุภัณฑ์ยานพาหนะและขนส่งที่ได้รับทดแทน ประเภท รถโดยสาร ขนาด ๑๒ ที่นั่ง (ดีเซล) และรถบรรทุก (ดีเซล) ขนาด ๑ ตัน สำนักงานสรรพากรพื้นที่สุราษฎร์ธานี ๒ ด้วยวิธีประกวดราคาอิเล็กทรอนิกส์ (e-bidding)",
+  "department_name": "กรมสรรพากร",
+  "budget_amount": 2208000.0,
+  "announcement_date": "2568-01-23",
+  "submission_date": "2568-01-31",
+  "contact": {
+    "phone": "077-423961-8",
+    "email": null
+  }
+}
+2025-02-01 12:16:21,144 - ERROR - OpenAI API key not found. Please set OPENAI_API_KEY environment variable.
+2025-02-01 12:16:41,741 - INFO - Found 78 PDF files
+2025-02-01 12:16:41,741 - INFO - Processing file 1/78
+2025-02-01 12:16:45,520 - ERROR - Error saving results: module 'datetime' has no attribute 'now'
+2025-02-01 12:17:32,034 - INFO - Found 78 PDF files
+2025-02-01 12:17:32,035 - INFO - Processing file 1/78
+2025-02-01 12:17:35,036 - INFO - 67089376419.pdf: Parsed successfully
+2025-02-01 12:17:35,036 - INFO - Processing file 2/78
+2025-02-01 12:17:38,318 - INFO - 67109371106.pdf: Parsed successfully
+2025-02-01 12:17:38,319 - INFO - Processing file 3/78
+2025-02-01 12:17:40,884 - INFO - 67109371649.pdf: Parsed successfully
+2025-02-01 12:17:40,884 - INFO - Processing file 4/78
+2025-02-01 12:17:43,925 - INFO - 67119009995.pdf: Parsed successfully
+2025-02-01 12:17:43,925 - INFO - Processing file 5/78
+2025-02-01 12:17:46,669 - INFO - 67119053211.pdf: Parsed successfully
+2025-02-01 12:17:46,670 - INFO - Processing file 6/78
+2025-02-01 12:17:49,089 - INFO - 67119102453.pdf: Parsed successfully
+2025-02-01 12:17:49,090 - INFO - Processing file 7/78
+2025-02-01 12:17:52,044 - INFO - 67119186694.pdf: Parsed successfully
+2025-02-01 12:17:52,044 - INFO - Processing file 8/78
+2025-02-01 12:17:54,908 - INFO - 67119405113.pdf: Parsed successfully
+2025-02-01 12:17:54,909 - INFO - Processing file 9/78
+2025-02-01 12:17:57,875 - INFO - 67119551718.pdf: Parsed successfully
+2025-02-01 12:17:57,876 - INFO - Processing file 10/78
+2025-02-01 12:18:00,472 - INFO - 67129021353.pdf: Parsed successfully
+2025-02-01 12:18:00,473 - INFO - Processing file 11/78
+2025-02-01 12:18:02,850 - INFO - 67129166115.pdf: Parsed successfully
+2025-02-01 12:18:02,850 - INFO - Processing file 12/78
+2025-02-01 12:18:05,503 - INFO - 67129185671.pdf: Parsed successfully
+2025-02-01 12:18:05,503 - INFO - Processing file 13/78
+2025-02-01 12:18:08,770 - INFO - 67129279272.pdf: Parsed successfully
+2025-02-01 12:18:08,770 - INFO - Processing file 14/78
+2025-02-01 12:18:13,521 - INFO - 67129334715.pdf: Parsed successfully
+2025-02-01 12:18:13,522 - INFO - Processing file 15/78
+2025-02-01 12:18:16,490 - INFO - 67129379040.pdf: Parsed successfully
+2025-02-01 12:18:16,491 - INFO - Processing file 16/78
+2025-02-01 12:18:19,739 - INFO - 67129380341.pdf: Parsed successfully
+2025-02-01 12:18:19,740 - INFO - Processing file 17/78
+2025-02-01 12:18:22,573 - INFO - 67129380574.pdf: Parsed successfully
+2025-02-01 12:18:22,574 - INFO - Processing file 18/78
+2025-02-01 12:18:24,814 - INFO - 67129486846.pdf: Parsed successfully
+2025-02-01 12:18:24,814 - INFO - Processing file 19/78
+2025-02-01 12:18:28,554 - INFO - 68019030366.pdf: Parsed successfully
+2025-02-01 12:18:28,554 - INFO - Processing file 20/78
+2025-02-01 12:18:31,301 - INFO - 68019041957.pdf: Parsed successfully
+2025-02-01 12:18:31,301 - INFO - Processing file 21/78
+2025-02-01 12:18:34,496 - INFO - 68019056317.pdf: Parsed successfully
+2025-02-01 12:18:34,496 - INFO - Processing file 22/78
+2025-02-01 12:18:37,835 - INFO - 68019079976.pdf: Parsed successfully
+2025-02-01 12:18:37,836 - INFO - Processing file 23/78
+2025-02-01 12:18:40,950 - INFO - 68019089289.pdf: Parsed successfully
+2025-02-01 12:18:40,950 - INFO - Processing file 24/78
+2025-02-01 12:18:43,204 - INFO - 68019120087.pdf: Parsed successfully
+2025-02-01 12:18:43,205 - INFO - Processing file 25/78
+2025-02-01 12:18:45,582 - INFO - 68019121636.pdf: Parsed successfully
+2025-02-01 12:18:45,582 - INFO - Processing file 26/78
+2025-02-01 12:18:47,697 - INFO - 68019124336.pdf: Parsed successfully
+2025-02-01 12:18:47,697 - INFO - Processing file 27/78
+2025-02-01 12:18:52,261 - INFO - 68019133974.pdf: Parsed successfully
+2025-02-01 12:18:52,262 - INFO - Processing file 28/78
+2025-02-01 12:18:54,441 - INFO - 68019140693.pdf: Parsed successfully
+2025-02-01 12:18:54,441 - INFO - Processing file 29/78
+2025-02-01 12:18:57,218 - INFO - 68019161889.pdf: Parsed successfully
+2025-02-01 12:18:57,219 - INFO - Processing file 30/78
+2025-02-01 12:19:00,421 - INFO - 68019173849.pdf: Parsed successfully
+2025-02-01 12:19:00,421 - INFO - Processing file 31/78
+2025-02-01 12:19:03,518 - INFO - 68019194287.pdf: Parsed successfully
+2025-02-01 12:19:03,519 - INFO - Processing file 32/78
+2025-02-01 12:19:06,712 - INFO - 68019200330.pdf: Parsed successfully
+2025-02-01 12:19:06,712 - INFO - Processing file 33/78
+2025-02-01 12:19:11,022 - INFO - 68019201854.pdf: Parsed successfully
+2025-02-01 12:19:11,022 - INFO - Processing file 34/78
+2025-02-01 12:19:13,942 - INFO - 68019231153.pdf: Parsed successfully
+2025-02-01 12:19:13,942 - INFO - Processing file 35/78
+2025-02-01 12:19:16,403 - INFO - 68019252810.pdf: Parsed successfully
+2025-02-01 12:19:16,403 - INFO - Processing file 36/78
+2025-02-01 12:19:19,998 - INFO - 68019259403.pdf: Parsed successfully
+2025-02-01 12:19:19,998 - INFO - Processing file 37/78
+2025-02-01 12:19:23,616 - INFO - 68019272717.pdf: Parsed successfully
+2025-02-01 12:19:23,617 - INFO - Processing file 38/78
+2025-02-01 12:19:25,960 - INFO - 68019274487.pdf: Parsed successfully
+2025-02-01 12:19:25,960 - INFO - Processing file 39/78
+2025-02-01 12:19:29,143 - INFO - 68019279765.pdf: Parsed successfully
+2025-02-01 12:19:29,144 - INFO - Processing file 40/78
+2025-02-01 12:19:31,662 - INFO - 68019292249.pdf: Parsed successfully
+2025-02-01 12:19:31,663 - INFO - Processing file 41/78
+2025-02-01 12:19:33,912 - INFO - 68019298033.pdf: Parsed successfully
+2025-02-01 12:19:33,912 - INFO - Processing file 42/78
+2025-02-01 12:19:37,368 - INFO - 68019305274.pdf: Parsed successfully
+2025-02-01 12:19:37,368 - INFO - Processing file 43/78
+2025-02-01 12:19:40,384 - INFO - 68019306244.pdf: Parsed successfully
+2025-02-01 12:19:40,385 - INFO - Processing file 44/78
+2025-02-01 12:19:42,940 - INFO - 68019318643.pdf: Parsed successfully
+2025-02-01 12:19:42,941 - INFO - Processing file 45/78
+2025-02-01 12:19:46,117 - INFO - 68019335799.pdf: Parsed successfully
+2025-02-01 12:19:46,117 - INFO - Processing file 46/78
+2025-02-01 12:19:48,921 - INFO - 68019342521.pdf: Parsed successfully
+2025-02-01 12:19:48,921 - INFO - Processing file 47/78
+2025-02-01 12:19:52,434 - INFO - 68019355281.pdf: Parsed successfully
+2025-02-01 12:19:52,434 - INFO - Processing file 48/78
+2025-02-01 12:19:52,466 - ERROR - Error extracting text from data\pdfs\68019358670.pdf: EOF marker not found
+2025-02-01 12:19:52,467 - ERROR - 68019358670.pdf: Failed to extract text
+2025-02-01 12:19:52,467 - INFO - Processing file 49/78
+2025-02-01 12:19:55,361 - INFO - 68019362899.pdf: Parsed successfully
+2025-02-01 12:19:55,362 - INFO - Processing file 50/78
+2025-02-01 12:19:58,738 - INFO - 68019371821.pdf: Parsed successfully
+2025-02-01 12:19:58,738 - INFO - Processing file 51/78
+2025-02-01 12:20:00,992 - INFO - 68019391292.pdf: Parsed successfully
+2025-02-01 12:20:00,993 - INFO - Processing file 52/78
+2025-02-01 12:20:04,459 - INFO - 68019391397.pdf: Parsed successfully
+2025-02-01 12:20:04,459 - INFO - Processing file 53/78
+2025-02-01 12:20:06,946 - INFO - 68019393081.pdf: Parsed successfully
+2025-02-01 12:20:06,947 - INFO - Processing file 54/78
+2025-02-01 12:20:09,879 - INFO - 68019400094.pdf: Parsed successfully
+2025-02-01 12:20:09,880 - INFO - Processing file 55/78
+2025-02-01 12:20:12,988 - INFO - 68019407890.pdf: Parsed successfully
+2025-02-01 12:20:12,989 - INFO - Processing file 56/78
+2025-02-01 12:20:15,514 - INFO - 68019419516.pdf: Parsed successfully
+2025-02-01 12:20:15,515 - INFO - Processing file 57/78
+2025-02-01 12:20:18,844 - INFO - 68019419537.pdf: Parsed successfully
+2025-02-01 12:20:18,845 - INFO - Processing file 58/78
+2025-02-01 12:20:22,459 - INFO - 68019420677.pdf: Parsed successfully
+2025-02-01 12:20:22,459 - INFO - Processing file 59/78
+2025-02-01 12:20:26,139 - INFO - 68019428992.pdf: Parsed successfully
+2025-02-01 12:20:26,140 - INFO - Processing file 60/78
+2025-02-01 12:20:29,787 - INFO - 68019435140.pdf: Parsed successfully
+2025-02-01 12:20:29,787 - INFO - Processing file 61/78
+2025-02-01 12:20:33,443 - INFO - 68019446785.pdf: Parsed successfully
+2025-02-01 12:20:33,443 - INFO - Processing file 62/78
+2025-02-01 12:20:35,957 - INFO - 68019447193.pdf: Parsed successfully
+2025-02-01 12:20:35,957 - INFO - Processing file 63/78
+2025-02-01 12:20:39,009 - INFO - 68019448833.pdf: Parsed successfully
+2025-02-01 12:20:39,009 - INFO - Processing file 64/78
+2025-02-01 12:20:42,434 - INFO - 68019448855.pdf: Parsed successfully
+2025-02-01 12:20:42,434 - INFO - Processing file 65/78
+2025-02-01 12:20:45,613 - INFO - 68019470531.pdf: Parsed successfully
+2025-02-01 12:20:45,613 - INFO - Processing file 66/78
+2025-02-01 12:20:48,450 - INFO - 68019477830.pdf: Parsed successfully
+2025-02-01 12:20:48,451 - INFO - Processing file 67/78
+2025-02-01 12:20:52,636 - INFO - 68019478199.pdf: Parsed successfully
+2025-02-01 12:20:52,637 - INFO - Processing file 68/78
+2025-02-01 12:20:55,492 - INFO - 68019492780.pdf: Parsed successfully
+2025-02-01 12:20:55,493 - INFO - Processing file 69/78
+2025-02-01 12:20:58,555 - INFO - 68019494894.pdf: Parsed successfully
+2025-02-01 12:20:58,555 - INFO - Processing file 70/78
+2025-02-01 12:20:58,556 - ERROR - Error extracting text from data\pdfs\68019498679.pdf: Cannot read an empty file
+2025-02-01 12:20:58,556 - ERROR - 68019498679.pdf: Failed to extract text
+2025-02-01 12:20:58,556 - INFO - Processing file 71/78
+2025-02-01 12:21:02,081 - INFO - 68019501311.pdf: Parsed successfully
+2025-02-01 12:21:02,081 - INFO - Processing file 72/78
+2025-02-01 12:21:06,361 - INFO - 68019524722.pdf: Parsed successfully
+2025-02-01 12:21:06,362 - INFO - Processing file 73/78
+2025-02-01 12:21:09,919 - INFO - 68019528515.pdf: Parsed successfully
+2025-02-01 12:21:09,920 - INFO - Processing file 74/78
+2025-02-01 12:21:12,853 - INFO - 68019535977.pdf: Parsed successfully
+2025-02-01 12:21:12,853 - INFO - Processing file 75/78
+2025-02-01 12:21:15,602 - INFO - 68019545788.pdf: Parsed successfully
+2025-02-01 12:21:15,603 - INFO - Processing file 76/78
+2025-02-01 12:21:19,461 - INFO - 68019547740.pdf: Parsed successfully
+2025-02-01 12:21:19,461 - INFO - Processing file 77/78
+2025-02-01 12:21:22,219 - INFO - 68019548378.pdf: Parsed successfully
+2025-02-01 12:21:22,219 - INFO - Processing file 78/78
+2025-02-01 12:21:25,011 - INFO - 68019549683.pdf: Parsed successfully
+2025-02-01 12:28:25,061 - INFO - 67119102453.pdf: Parsed successfully
