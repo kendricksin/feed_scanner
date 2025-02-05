@@ -17,3 +17,4 @@ Pillow
 aiofiles
 PyMuPDF
 PyPDF2
+bs4
