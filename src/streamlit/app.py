@@ -201,30 +201,44 @@ def show_announcement_tab():
         index=0
     )
     
-    # Budget range filter
+    # Budget range filter - Fixed version
     with get_db() as conn:
         budget_stats = pd.read_sql_query(
-            "SELECT MIN(budget_amount) as min_budget, MAX(budget_amount) as max_budget FROM announcements", 
+            """
+            SELECT 
+                COALESCE(MIN(budget_amount), 0) as min_budget,
+                COALESCE(MAX(budget_amount), 1000000) as max_budget 
+            FROM announcements 
+            WHERE budget_amount IS NOT NULL
+            """, 
             conn
         )
     
-    min_budget = budget_stats['min_budget'].iloc[0] or 0
-    max_budget = budget_stats['max_budget'].iloc[0] or 1000000
+    # Convert to float and handle None values
+    min_budget = float(budget_stats['min_budget'].iloc[0])
+    max_budget = float(budget_stats['max_budget'].iloc[0])
+    
+    # Ensure step is appropriate for the range
+    step = (max_budget - min_budget) / 100 if max_budget > min_budget else 1.0
     
     col1, col2 = st.sidebar.columns(2)
     with col1:
         budget_min = st.number_input(
             "Min Budget", 
-            min_value=min_budget, 
-            max_value=max_budget, 
-            value=min_budget
+            min_value=float(min_budget),
+            max_value=float(max_budget),
+            value=float(min_budget),
+            step=step,
+            format="%.2f"
         )
     with col2:
         budget_max = st.number_input(
             "Max Budget", 
-            min_value=min_budget, 
-            max_value=max_budget, 
-            value=max_budget
+            min_value=float(min_budget),
+            max_value=float(max_budget),
+            value=float(max_budget),
+            step=step,
+            format="%.2f"
         )
     
     # Submission date range filter
