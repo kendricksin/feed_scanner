@@ -1,0 +1,472 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE" >
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="/EGPWeb/control.sdo"></script> 
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=TIS-620">
+<title>ประกาศที่เกี่ยวข้อง</title>
+<link type="text/css" rel="StyleSheet" href="/egp2procmainWeb/style/main.css" />
+<script type="text/javascript" language="JavaScript1.2" src="/egp2procmainWeb/js/AgencyErrorWarning.js"></script>
+<script type="text/javascript" language="JavaScript1.2" src="/egp2procmainWeb/js/commonJS.js"></script>
+<script type="text/javascript" src="/egp2procmainWeb/js/showPopupTor.js"></script>
+<script type="text/javascript" src="/egp2procmainWeb/js/FPRO0001.js"></script>
+<script type="text/javascript">
+ 		
+ 	function chkOnload(){
+ 		var toPDF=$("#toPDF").val();
+		if(toPDF=="pdf"){
+			var reportName="FPRO9965";
+			var flagParam = "?flag=pdf&reportName="+reportName;
+			var host = location.protocol+"//"+location.hostname+""+(location.port == ""?"":":"+location.port);
+			var url = host+"/egp2procmainWeb/ViewReport"+flagParam;
+			window.open(url);
+		}
+		
+ 		var home = 'A';
+ 		document.getElementById("trBudgetYear").style.display = 'none';
+// 		document.getElementById("trProjectName").style.display = 'none';
+ 		if(home=='S' || home=='s'){
+ 			
+ 			document.getElementById("trMethod").style.display = 'none';
+ 			document.getElementById("trType").style.display = 'none';
+ 			document.getElementById("trGovStatus").style.display = 'none';
+ 			
+ 			document.getElementById("trProjectMoney").style.display = 'none';
+ 			document.getElementById("trProjectStatus").style.display = 'none';
+						
+ 		}else{
+
+ 		}
+ 		$("#toPDF").val("");
+ 	}
+ 	
+	function clkBack(){
+		var f1 = document.form1;
+		f1.announceType.value = "5";
+		f1.mode.value = "SEARCH";
+		f1.servlet.value = "FPRO9965Servlet";
+		f1.proc_id.value = "FPRO9965";
+		f1.action = "procsearch.sch";                            
+		f1.submit();
+	}
+	
+	// กลับไปสู่หน้า ที่มีประกาศที่เกี่ยวข้อง
+	function clkBack2(){
+		var f1 = document.form1;
+		f1.announceType.value = f1.backAnnounceType.value;
+		f1.backStatus.value = '';
+		f1.temp_announType.value = 'BOQ';
+		f1.mode.value = "LINK";
+		f1.servlet.value = "FPRO9965Servlet";
+		f1.proc_id.value = "FPRO9965_1";
+		f1.action = "procsearch.sch";
+		f1.submit();
+	}	
+	
+	//////////// onclick Page /////////////////////////
+	function CurrentShowData(item3,item4,item5,item6){
+		var f1 = document.form1;
+		var p = item4;
+		var div=5;//// Default 5 page/group
+		var sub;
+		if(item5==""&&item6==""){
+			if((item4%div)!=0){
+				sub=((((item4/div))-((item4%div)/div)));
+			}else{
+				sub=((item4/div)-1);
+			}
+			item5=sub+1;
+			item3=((sub-1)*7);   ////  6 row per page
+			item6=parseInt(RoundUp(((sub*div)+1)-div));
+		}
+		
+		f1.startindexloop.value = item3;
+		f1.pageNo.value = item4;
+		f1.grouppage.value = item5;
+		f1.prevpage.value = item6;
+		f1.servlet.value = "FPRO9965Servlet";
+		f1.proc_id.value = "FPRO9965_1";
+		f1.mode.value = "LINK";
+		f1.action = "procsearch.sch";
+		f1.submit();
+	}
+	function clkLinkContractNo(projectId,contractId,contractType){
+		var f1 = document.form1;
+		f1.target = "_blank";
+		f1.projectId.value = projectId;
+		f1.contractId.value = contractId;
+		f1.contractType.value = contractType;
+		f1.proc_id.value = "FCON3000_4";
+		f1.servlet.value = "FCON2000_2Servlet";
+		f1.processFlows.value = "";
+		f1.action="../../egpecontractWeb/jsp/control.econtract";
+		f1.submit();
+		f1.target = "";
+		f1.processFlows.value = "Procure";
+	}
+	
+	function printPdf(flag){
+		var f1 = document.form1;
+		f1.mode.value = "PRINT";
+		f1.proc_id.value = "FPRO9965_2";
+		f1.servlet.value = "FPRO9965Servlet";
+		f1.action="control.egp2";
+		$("#toPDF").val(flag);
+		f1.submit();
+	}
+	////////////////////////////////////////////////////
+		
+ </script>
+</head>
+<body onload="chkOnload()">
+<form name="form1" method="post" target="_self" action="">
+<!-- EGP HEADER -->
+ <link type="text/css" rel="StyleSheet" href="/egpThemeWeb/css/bootstrap.min.css" />  
+ <link type="text/css" rel="StyleSheet" href="/egpThemeWeb/css/plain-sidebar.css" />  
+ <link type="text/css" rel="StyleSheet" href="/egpThemeWeb/css/font-awesome.min.css" /> 
+ <link type="text/css" rel="StyleSheet" href="/egp3autosearchWeb/jquery/css/jquery.ajaxComboBox-menu.css " /> 
+ <link type="text/css" rel="StyleSheet" href="/egpThemeWeb/jquery-ui-1.10.4/css/ui-lightness/jquery-ui-1.10.4.min.css " /> 
+ <link type="text/css" rel="StyleSheet" href="/egp3autosearchWeb/jquery/css/jquery.ajaxComboBox-menu.css " /> 
+ <script type="text/javascript" src="/egpThemeWeb/jquery-ui-1.10.4/js/jquery-1.10.2.js" ></script> 
+ <script type="text/javascript" src="/egpThemeWeb/jquery-ui-1.10.4/js/jquery-ui-1.10.4.min.js" ></script> 
+ <script type="text/javascript" src="/egpThemeWeb/js/bootstrap.min.js"></script>     
+ <script type="text/javascript" src="/egpThemeWeb/js/index.js"></script>     
+ <script type="text/javascript" src="/egp3autosearchWeb/jquery/js/jquery.ajaxComboBox.7.1-menu.js"></script> 
+ <script type="text/javascript" src="/egp3autosearchWeb/js/autocomplete.js"></script>     
+ <script> $('body').addClass('blue'); </script> 
+<script>
+ var servDate = new Date(2025,1,6);
+  function ChkRet_nosess(){
+	window.location.replace('http://www.gprocurement.go.th');
+ }
+</script>
+<div id="wrapper"><div id="sidebar-wrapper"><div class="sidebar-title"><div class="logo logo-b">&nbsp;</div></div><div class="sidebar-sub-title"><p><a onclick="ChkRet_nosess();" href="#">ออกจากระบบงาน</a></p></div></div><div class="menu-toggle-pane"><a id="menu-toggle" href="#" onclick="$('#wrapper').toggleClass('active');" class="btn btn-default menu-toggle menu-trigger"><i class="fa fa-bars"></i></a> </div><div id="page-content-wrapper"><div class="content-header"><div class="logo logo-w">&nbsp;</div><div class="header-textpane"><h1>ระบบการจัดซื้อจัดจ้างภาครัฐ</h1><h3>Thai Government Procurement</h3></div></div> <div id="page-content"><div class="inset inset-shift-left"></div></div></div></div></div><script> 
+ $( document ).ready(function() {   setInputForLink('form1','proc_id', 'FAGNMENU');  setInputForLink('form1','proc_name', 'เมนู');  setInputForLink('form1','mode', '');  setInputForLink('form1','menu_flag', '');  setInputForLink('form1','type_id', '');  setInputForLink('form1','priv_status', '');  setInputForLink('form1','url', '');  setInputForLink('form1','menusystem', '');  setInputForLink('form1','flagpage', '');  setInputForLink('form1','servlet', '');  setInputForLink('form1','processFlows', '');  setInputForLink('form1','deptid', '');  setInputForLink('form1','deptSubId', '');  setInputForLink('form1','offmoiid', '');  setInputForLink('form1','agencyid', '');  setInputForLink('form1','mainUserid', '');  setInputForLink('form1','mainEmployeeType', '');  setInputForLink('form1','mainRoleid', '');  setInputForLink('form1','tempsys', '');  setInputForLink('form1','flag_list', '');  }); </script>
+
+<!-- END HEADER -->
+
+<table width="960" height="" border="0" cellspacing="0" cellpadding="0"
+	align="center">
+	<tr background="/egp2procmainWeb/images/pagebodyOrg.gif">
+		<td background="/egp2procmainWeb/images/pagebodyOrg.gif">
+
+		<table border="0" cellspacing="0" cellpadding="0"
+			bordercolor="#e0e0e0" align="center">
+			<tr>
+				<td>
+				<table width="850" border="0" cellspacing="0" cellpadding="2"
+					align="center">
+					<tr>
+						<td colspan="2">
+						<table width="850" border="0" cellspacing="0" cellpadding="0"
+							align="center">
+							<tr>
+								<td>&nbsp;</td>
+							</tr>
+							<tr height="32">
+								<td>
+								 
+									<span class="regTitle"><b>ข้อมูลสาระสำคัญในสัญญา</b></span>
+								 
+								</td>
+							</tr>
+						</table>
+						</td>
+					</tr>
+					<tr>
+						<td align="right" width="208">หน่วยงาน&nbsp;</td>
+						<td width="645">&nbsp; <input type="text" name="deptSubName2"
+							class="txtDisabled" size="75" maxlength="100"
+							value="องค์การบริหารส่วนจังหวัดสงขลา" readonly></td>
+					</tr>
+					<tr id="trMoi">
+						<td align="right" width="208">จังหวัด&nbsp;</td>
+						<td width="645">&nbsp; <input type="text" name="moiName"
+							class="txtDisabled" size="61" maxlength="" value="สงขลา"
+							readonly></td>
+					</tr>
+					<tr id="trMethod">
+						<td align="right" width="208">วิธีการจัดหา&nbsp;</td>
+						<td width="645">&nbsp; <input type="text" name="methodName2"
+							class="txtDisabled" size="75" maxlength=""
+							value="ประกวดราคาอิเล็กทรอนิกส์ (e-bidding)" readonly></td>
+					</tr>
+					<tr id="trType">
+						<td align="right" width="208">ประเภทการจัดหา&nbsp;</td>
+						<td width="645">&nbsp; <input type="text" name="typeName2"
+							class="txtDisabled" size="75" maxlength="" value="จ้างก่อสร้าง"
+							readonly></td>
+					</tr>
+					<tr id="trGovStatus">
+						<td align="right" width="208">ประเภทโครงการ&nbsp;</td>
+						<td width="645">&nbsp; <input type="text" name="govStatus2"
+							class="txtDisabled" size="75" maxlength="" value="จัดซื้อจัดจ้างตามขั้นตอนปกติ"
+							readonly></td>
+					</tr>
+					<tr id="trProjectId">
+						<td align="right" width="207">เลขที่โครงการ&nbsp;</td>
+						<td width="646">&nbsp; <input type="text" name="projectId"
+							class="txtDisabled" size="12" maxlength="12"
+							value="67089577911" readonly></td>
+					</tr>
+					<tr id="trProjectName">
+						<td align="right" width="208">ชื่อโครงการ&nbsp;</td>
+						<td width="645">&nbsp; <input type="text" name="projectName2"
+							class="txtDisabled" size="75" maxlength="100"
+							value="ประกวดราคาจ้างก่อสร้างโครงการก่อสร้างสะพานคอนกรีตเสริมเหล็กสายบ้านเหมืองล่าง ตำบลทุ่งขมิ้น อำเภอนาหม่อม จังหวัดสงขลา พร้อมก่อสร้างเขื่อนป้องกันการกัดเซาะตลิ่ง ด้วยวิธีประกวดราคาอิเล็กทรอนิกส์ (e-bidding)" readonly></td>
+					</tr>
+					
+					<tr id="trBudgetYear">
+						<td align="right" width="208">ปีงบประมาณ&nbsp;</td>
+						<td width="645">&nbsp; <input type="text" name="budgetYear2"
+							class="txtDisabled" size="10" maxlength="4"
+							onKeyPress="keyNumOnly()" value="2567" readonly></td>
+					</tr>
+					<tr id="trProjectMoney">
+						<td align="right" width="208">งบประมาณ&nbsp;</td>
+						<td width="645">&nbsp; <input type="text"
+							name="projectMoney2" class="txtDisabled"
+							style="text-align: right" size="40" maxlength=""
+							value="6,500,000.00" readonly>&nbsp;บาท</td>
+					</tr>
+					<tr id="trPriceBuild">
+						<td align="right" width="208">ราคากลาง&nbsp;</td>
+						<td width="645">&nbsp; <input type="text"
+							name="priceBuild2" class="txtDisabled"
+							style="text-align: right" size="40" maxlength=""
+							value="6,493,450.36" readonly>&nbsp;บาท</td>
+					</tr>
+					<tr id="trProjectStatus">
+						<td align="right" width="208">สถานะโครงการ&nbsp;</td>
+						<td width="645">&nbsp; <input type="text"
+							name="projectStatus2" class="txtDisabled" size="61" maxlength=""
+							value="ระหว่างดำเนินการ" readonly></td>
+					</tr>
+
+					<tr>
+						<td colspan="2">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+						
+						<table width="100%" border="0" cellspacing="1" cellpadding="1"
+							align="center">
+							<tr class="thGreen">
+								<td align="center" width="4%"><b>ลำดับ&nbsp;</b></td>
+								<td align="center" width="9%"><b>เลขประจำตัว<br>ผู้เสียภาษีอากร&nbsp;</b></td>
+								<td align="center"><b>ชื่อผู้ขาย&nbsp;</b></td>
+								<td align="center" width="9%"><b>เลขคุมสัญญา<br>ในระบบ&nbsp;e-GP&nbsp;</b></td>
+								<td align="center" width="9%"><b>เลข<br>ที่สัญญา/<br>
+								ใบสั่งซื้อ&nbsp;</b></td>
+								<td align="center" width="9%"><b>วันที่<br>ทำสัญญา/<br>
+								ใบสั่งซื้อ&nbsp;</b></td>
+								<td align="center" width="11%"><b>จำนวนเงิน&nbsp;</b></td>
+								<td align="center" width="10%"><b>สถานะสัญญา&nbsp;</b></td>
+								<td align="center" width="17%"><b>เหตุผลที่คัดเลือก&nbsp;</b></td>
+							</tr>
+							
+							<tr>
+								<td colspan="8" align="left"><B>ข้อความปฎิเสธ : </B>E1530 :
+								ค้นหาข้อมูลในฐานข้อมูลไม่พบ</td>
+							</tr>
+							
+						</table>
+						
+						</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+		</table>
+		
+		<table border="0" cellspacing="0" cellpadding="0" bordercolor="#e0e0e0" align="center">
+			<tr>
+				<td>
+				<table width="850" border="0" cellspacing="0" cellpadding="2" align="center">
+					<tr>
+						<td colspan="2">
+							<table width="850" border="0" cellspacing="0" cellpadding="0" align="center">
+								<tr>
+									<td>&nbsp;</td>
+								</tr>
+								<tr height="32">
+									<td>
+										<span class="regTitle"><b>รายชื่อผู้เสนอราคา</b></span>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<table width="100%" border="0" cellspacing="1" cellpadding="1"
+								align="center">
+								<tr class="thGreen">
+									<td align="center" width="30"><b>&nbsp;</b></td>
+									<td align="center" width="470"><b>รายการพิจารณา&nbsp;</b></td>
+									<td align="center" width="280"><b>เลขประจำตัวผู้เสียภาษีอากร&nbsp;</b></td>
+									<td align="center" width="400"><b>รายชื่อผู้เสนอราคา&nbsp;</b></td>
+									<td align="center" width="153"><b>ราคาที่เสนอ&nbsp;</b></td>
+								</tr>
+								
+
+								<tr class='tr0'>
+							   		<td align="center" valign="top">1&nbsp;</td>
+							   	
+							   
+							   		<td align="left" valign="top">โครงการก่อสร้างสะพานคอนกรีตเสริมเหล็ก สายบ้านเหมืองล่าง ตำบลทุ่งขมิ้น อำเภอนาหม่อม จังหวัดสงขลา พร้อมก่อสร้างเขื่อนป้องกันการกัดเซาะตลิ่ง</td>
+							   		<td align="center">0903550000768<br>0903551000541<br>0903561002228<br>0905550001464<br>0905560002790<br></td>
+									<td align="left">ห้างหุ้นส่วนจำกัด ซีบี คอน<br>ห้างหุ้นส่วนจำกัด หาดใหญ่ กรุ๊ป<br>ห้างหุ้นส่วนจำกัด เอส.แอล.เอส.คอนส์<br>บริษัท สิริลักษณ์คอนสตรัคชั่น จำกัด<br>บริษัท เอสเอส ไฮเวย์ จำกัด<br></td>
+									<td align="right">5,689,000.00<br>6,490,000.00<br>6,099,000.00<br>6,200,000.00<br>6,390,000.00<br></td>
+								</tr>
+									 
+							</table>
+						</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+		</table>
+		
+		<table width="100%" border="0" cellspacing="0" cellpadding="0"
+			align="center">
+			<tr>
+				<td align="center">&nbsp;</td>
+			</tr>
+		</table>
+		<table width="100%" border="0" cellspacing="0" cellpadding="0"
+			align="center">
+			<tr>
+				<td align="center">&nbsp;</td>
+			</tr>
+			<tr>
+				<td align="center">
+				
+ 				<input type="button" class="btnPrint" value="พิมพ์" 
+ 					style='background: url("/egp2procmainWeb/images/btnOrg100.gif"); width: 100px; height: 25px; cursor:pointer;' 
+ 					onclick="printPdf('pdf')">
+ 				
+				<input type="button" class="btnCommon" value="กลับหน้าค้นหา"
+					style='background: url("/egp2procmainWeb/images/btnOrg100.gif"); width: 100px; height: 25px; cursor:pointer;'
+					onclick='clkBack2()'>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">&nbsp;</td>
+			</tr>
+		</table>
+
+		<input type="hidden" id="flag" name="flag"> <input type="hidden"
+			id="flowHidden" name="flowHidden"> <input type="hidden" id="servlet" name="servlet"
+			value="FPRO9965Servlet"> <input type="hidden" id="proc_id" name="proc_id"
+			value="FPRO9965"> <input type="hidden" id="proc_name" name="proc_name"
+			value="Procure"> <input type="hidden" id="retmenu" name="retmenu" value="">
+		<input type="hidden" id="processFlows" name="processFlows" value="Procure"> <input
+			type="hidden" id="mode" name="mode" value=""> <input type="hidden"
+			id="homeflag" name="homeflag" value="A"> <input type="hidden"
+			id="temp_projectId" name="temp_projectId" value='67089577911'>
+		<input type="hidden" id="temp_methodId" name="temp_methodId"
+			value='16'> <!-- Parameter ข้อมูลสาระสำคัญประกาศที่เกี่ยวข้อง -->
+		<input type="hidden"
+			id="temp_deptSubId" name="temp_deptSubId" value=""> <input type="hidden"
+			id="temp_typeId" name="temp_typeId"
+			value='02'>
+		<input type="hidden" id="temp_projectName" name="temp_projectName" value=""> <input
+			type="hidden" id="temp_budgetYear" name="temp_budgetYear" value=""> <input
+			type="hidden" id="temp_projectMoney" name="temp_projectMoney" value=""> <input
+			type="hidden" id="temp_projectStatus" name="temp_projectStatus" value=""> <input
+			type="hidden" id="temp_govStatus" name="temp_govStatus"
+			value='2'>
+		<input type="hidden" id="temp_announType" name="temp_announType"
+			value='BOQ'>
+		<input type="hidden" id="temp_itemNo" name="temp_itemNo" value=''>
+		<input type="hidden" id="temp_moiId" name="temp_moiId" value="null">
+		<input type="hidden" id="backProjectId" name="backProjectId"
+			value='67089577911'>
+		<input type="hidden" id="backAnnounceType" name="backAnnounceType"
+			value='15'>
+		<input type="hidden" id="backStatus" name="backStatus" value="2">
+		<input type="hidden" id="temp_priceBuild" name="temp_priceBuild" value="">
+		<!-- ----------------------------------- -->
+
+		<input type="hidden" id="announceType" name="announceType"
+			value='I'> <input
+			type="hidden" id="budgetYear" name="budgetYear"
+			value=''> <input
+			type="hidden" id="deptId" name="deptId" value=''>
+		<input type="hidden" id="deptSubId" name="deptSubId"
+			value=''> <input
+			type="hidden" id="moiId" name="moiId" value=''>
+		<input type="hidden" id="methodId" name="methodId"
+			value='16'> <input
+			type="hidden" id="typeId" name="typeId" value=''>
+		<input type="hidden" id="project_id" name="project_id" 
+			value='67089577911'>
+		<input type="hidden" id="projectName" name="projectName"
+			value=''> <input
+			type="hidden" id="announceSDate" name="announceSDate"
+			value=''> <input
+			type="hidden" id="announceEDate" name="announceEDate"
+			value=''> <input
+			type="hidden" id="projectMoneyS" name="projectMoneyS"
+			value=''> <input
+			type="hidden" id="projectMoneyE" name="projectMoneyE"
+			value=''> <input
+			type="hidden" id="projectStatus" name="projectStatus"
+			value=''> <input
+			type="hidden" id="deptSubName" name="deptSubName"
+			value=''> <!-- Start Hidden param Page Next Prev -->
+		<input type="hidden" id="pageNo"  name="pageNo" value=""> <input
+			type="hidden" id="grouppage"  name="grouppage" value=""> <input type="hidden"
+			id="prevpage"  name="prevpage" value=""> <input type="hidden"
+			id="startindexloop" name="startindexloop" value=""> <input type="hidden"
+			id="url" name="url" value="agc/"> <!-- End Hidden param Page Next Prev -->
+		<input type="hidden" name="pass" value=""><input type="hidden"
+			id="templateType" name="templateType" value=""> <input type="hidden"
+			id="temp_Announ" name="temp_Announ" value="">
+			<input type="hidden" id="announceId" name="announceId" value="">
+			</td>
+	</tr>
+</table>
+<input type="hidden" id="contractId" name="contractId" >
+<input type="hidden" id="projectId" name="projectId" >
+<input type="hidden" id="contractType" name="contractType" >
+<input type="hidden" id="toPDF" name="toPDF" value="">
+<!-- EGP FOOTER --> 
+
+<table width="960" border="0" cellspacing="0" cellpadding="0" align="center"> 
+	<tr><td colspan="2"><img src="/egp2procmainWeb/images/pagefooter.gif"></td></tr>	 
+	<tr height="22">
+		<td width="890" >&nbsp;&nbsp; 
+			<span class="gray1"  style="font-size:12px;">กองระบบการจัดซื้อจัดจ้างภาครัฐและราคากลาง (กจร.) กรมบัญชีกลาง ถนนพระราม 6 แขวงพญาไท เขตพญาไท กรุงเทพมหานคร 10400 โทร. 0-2270-6400 กด 3 </span> 
+		</td>
+		<td width="70"  align="right">
+			<input type='hidden' id='ipaddress'  name='ipaddress' value='47.84.216.244'> 
+			<span class="gray1"  style="font-size:12px;">FPRO9965</span>
+			<input type='hidden' id='Owner_name_phone' name='Owner_name_phone' value='กองระบบการจัดซื้อจัดจ้างภาครัฐและราคากลาง (กจร.) กรมบัญชีกลาง โทร.0-2270-6400 กด 3'> 
+		&nbsp;&nbsp;</td>
+	</tr>
+</table>
+<noscript><link type="text/css" rel="StyleSheet" href="/egp2procmainWeb/style/noscript/noscriptStyle.css" /><div id="noscript-inner"><iframe id="noscript-innerbox"></iframe><span id="noscript-innerbox">&nbsp&nbsp&nbspไม่สามารถทำงานได้ เนื่องจาก javaScript ถูก Disableกรุณา Enable javaScript เพื่อให้ Browser ทำงานได้<p></p>&nbsp&nbsp&nbspโดยเข้าไปที่...เมนู Tool &gt;&gt; <br>Internet Option >> Security &gt;&gt; <br>Custom Level..&gt;&gt; <br>Active scripting เลือก Enable <br></span></div></div></noscript>
+<!-- END FOOTER --></form>
+
+</body>
+</html>

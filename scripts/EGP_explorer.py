@@ -47,7 +47,7 @@ class EGPClient:
             
             soup = BeautifulSoup(response.text, 'html.parser')
             project_info = self._extract_project_info(soup)
-            bid_info = self._extract_bid_info(soup, project_info['reference_price'])
+            bid_info = self._extract_bid_info(soup)
             
             return {
                 'project': project_info,
@@ -59,63 +59,126 @@ class EGPClient:
             return {'project': {}, 'bids': []}
 
     def _extract_project_info(self, soup: BeautifulSoup) -> Dict:
-        """Extract project information from HTML"""
-        info = {}
-        
-        # Try to get project name and reference price first
-        for elem in soup.find_all('input', {'class': 'txtDisabled'}):
-            name = elem.get('name', '')
-            value = elem.get('value', '').strip()
+        """Extract project information from HTML using improved parser"""
+        def get_input_value(name):
+            try:
+                elem = soup.find('input', {'name': name})
+                if elem and 'value' in elem.attrs:
+                    return elem['value'].strip()
+                logger.error(f"Could not find input element: {name}")
+                return 'N/A'
+            except Exception as e:
+                logger.error(f"Error extracting {name}: {e}")
+                return 'N/A'
+
+        def parse_amount(value: str) -> float:
+            try:
+                if value == 'N/A':
+                    return 0.0
+                # Remove currency symbol, commas, and convert to float
+                cleaned = value.replace('฿', '').replace(',', '').strip()
+                return float(cleaned)
+            except (ValueError, TypeError, AttributeError) as e:
+                logger.error(f"Error parsing amount {value}: {e}")
+                return 0.0
+
+        try:
+            # Define field mappings
+            field_mappings = {
+                'methodName2': 'procurement_method',
+                'typeName2': 'procurement_type',
+                'govStatus2': 'project_type',
+                'projectId': 'project_id',
+                'projectName2': 'project_name',
+                'projectMoney2': 'budget',
+                'priceBuild2': 'reference_price',
+                'projectStatus2': 'project_status',
+                'deptSubName2': 'agency',
+                'moiName': 'province'
+            }
+
+            # Extract all values first
+            raw_values = {
+                field: get_input_value(html_field)
+                for html_field, field in field_mappings.items()
+            }
+
+            # Log raw values for debugging
+            logger.info("Raw input values:")
+            for field, value in raw_values.items():
+                logger.info(f"{field}: {value}")
+
+            info = {
+                'title': 'ข้อมูลสาระสำคัญในสัญญา',
+                **raw_values,
+                'budget': parse_amount(raw_values['budget']),
+                'reference_price': parse_amount(raw_values['reference_price'])
+            }
             
-            if name == 'projectId':
-                info['project_id'] = value
-            elif name == 'deptSubName2':
-                info['agency'] = value
-            elif name == 'moiName':
-                info['province'] = value
-            elif name == 'methodName2':
-                info['procurement_method'] = value
-            elif name == 'typeName2':
-                info['procurement_type'] = value
-            elif name == 'projectName2':
-                info['project_name'] = value
-            elif name == 'priceBuild2' and value:
-                try:
-                    info['reference_price'] = float(value.replace(',', ''))
-                except ValueError:
-                    pass
-                    
+            # Log processed values
+            logger.info("Processed project info:")
+            for key, value in info.items():
+                logger.info(f"{key}: {value}")
+                
+            return info
+            
+        except Exception as e:
+            logger.error(f"Error in _extract_project_info: {e}")
+            return {}
+        
         return info
 
-    def _extract_bid_info(self, soup: BeautifulSoup, reference_price: float) -> List[Dict]:
-        """Extract bid information from HTML"""
-        bids_table = None
-        for table in soup.find_all('table'):
-            if table.find('td', string=lambda t: t and 'รายชื่อผู้เสนอราคา' in t):
-                bids_table = table
-                break
+    def _extract_bid_info(self, soup: BeautifulSoup) -> List[Dict]:
+        """Extract bid information using improved parser"""
+        try:
+            # Find the table that contains bidder information
+            bidders_table = None
+            for table in soup.find_all('table'):
+                if table.find('td', string=lambda t: t and 'รายชื่อผู้เสนอราคา' in t):
+                    bidders_table = table
+                    break
 
-        if not bids_table:
+            if not bidders_table:
+                logger.warning("Bidders table not found")
+                return []
+
+            # Find the data row
+            data_row = bidders_table.find('tr', {'class': 'tr0'})
+            if not data_row:
+                logger.warning("No bid data row found")
+                return []
+
+            cells = data_row.find_all('td')
+            if len(cells) < 5:
+                logger.warning(f"Insufficient cells in bid row: {len(cells)}")
+                return []
+
+            # Get lists by splitting on <br> tags
+            tax_ids = [x.strip() for x in cells[2].get_text('<br>').split('<br>') if x.strip()]
+            bidder_names = [x.strip() for x in cells[3].get_text('<br>').split('<br>') if x.strip()]
+            prices = [x.strip() for x in cells[4].get_text('<br>').split('<br>') if x.strip()]
+
+            bids = []
+            reference_price = self._extract_project_info(soup)['reference_price']
+            
+            # Add debug logging
+            logger.info(f"Found {len(tax_ids)} bids")
+            logger.info(f"Reference price: {reference_price}")
+            
+        except Exception as e:
+            logger.error(f"Error extracting bid info: {e}")
             return []
-
-        bids = []
-        for row in bids_table.find_all('tr', class_='tr0'):
-            cells = row.find_all('td')
-            if len(cells) >= 5:
-                tax_ids = cells[2].get_text('\n').strip().split('\n')
-                companies = cells[3].get_text('\n').strip().split('\n')
-                amounts = cells[4].get_text('\n').strip().split('\n')
-                
-                for tax_id, company, amount in zip(tax_ids, companies, amounts):
-                    bid_amount = float(amount.replace(',', ''))
-                    price_cut = ((bid_amount / reference_price) - 1) * 100
-                    
-                    bids.append({
-                        'tax_id': tax_id.strip(),
-                        'company': company.strip(),
-                        'bid_amount': bid_amount,
-                        'price_cut': price_cut
-                    })
+        
+        for tax_id, company, amount in zip(tax_ids, bidder_names, prices):
+            bid_amount = float(amount.replace(',', ''))
+            price_cut = ((bid_amount / reference_price) - 1) * 100 if reference_price else 0
+            
+            bids.append({
+                'tax_id': tax_id,
+                'company': company,
+                'bid_amount': bid_amount,
+                'price_cut': price_cut
+            })
 
         return sorted(bids, key=lambda x: x['bid_amount'])
 
@@ -143,21 +206,54 @@ def main():
             
             if result['project']:
                 # Project Info Section
-                st.header("📋 Project Information")
-                col1, col2 = st.columns(2)
-                
                 project = result['project']
-                with col1:
-                    st.metric("Project ID", project.get('project_id', 'N/A'))
-                    st.metric("Agency", project.get('agency', 'N/A'))
-                    st.metric("Province", project.get('province', 'N/A'))
                 
-                with col2:
-                    method = project.get('procurement_method', project.get('methodName2', 'N/A'))
-                    st.metric("Method", method)
-                    st.metric("Type", project.get('procurement_type', project.get('typeName2', 'N/A')))
-                    if 'reference_price' in project:
-                        st.metric("Reference Price", format_currency(project['reference_price']))
+                # Main header with emoji
+                st.header("📄 " + project['title'])
+                
+                # Create two columns for the main layout
+                left_col, right_col = st.columns([2, 1])
+                
+                with left_col:
+                    st.markdown("### ข้อมูลโครงการ")
+                    
+                    # Core project information
+                    info_md = f"""
+                    **หน่วยงาน:** {project.get('agency')}  
+                    **จังหวัด:** {project.get('province')}  
+                    **วิธีการจัดหา:** {project.get('procurement_method')}  
+                    **ประเภทการจัดหา:** {project.get('procurement_type')}  
+                    **ประเภทโครงการ:** {project.get('project_type')}  
+                    **เลขที่โครงการ:** {project.get('project_id')}  
+                    """
+                    st.markdown(info_md)
+                    
+                    # Project name
+                    st.markdown("**ชื่อโครงการ:**")
+                    if project.get('project_name') != 'N/A':
+                        st.info(project.get('project_name'))
+                    else:
+                        st.error("ไม่พบข้อมูลชื่อโครงการ")
+                
+                with right_col:
+                    # Financial and status metrics
+                    if project.get('budget', 0) > 0:
+                        st.metric(
+                            "งบประมาณ",
+                            format_currency(project['budget']) + " บาท"
+                        )
+                    
+                    if project.get('reference_price', 0) > 0:
+                        st.metric(
+                            "ราคากลาง",
+                            format_currency(project['reference_price']) + " บาท"
+                        )
+                    
+                    if project.get('project_status') != 'N/A':
+                        st.metric(
+                            "สถานะโครงการ",
+                            project['project_status']
+                        )
                 
                 # Bid Information Section
                 if result['bids']:
